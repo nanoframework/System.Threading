@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>nanoFramework.System.Threading.DELIVERABLES</id>
+    <version>$version$</version>
+    <title>nanoFramework.System.Threading.DELIVERABLES</title>
+    <authors>nanoFramework project contributors</authors>
+    <owners>nanoFramework project contributors</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes>
+    </releaseNotes>
+    <developmentDependency>false</developmentDependency>
+    <projectUrl>https://github.com/nanoframework/lib-nanoFramework.System.Threading</projectUrl>
+    <iconUrl>https://secure.gravatar.com/avatar/97d0e092247f0716db6d4b47b7d1d1ad</iconUrl>
+    <copyright>Copyright (c) .NET Foundation and Contributors</copyright>
+    <description>** DON'T REFERENCE THIS PACKAGE ** Not meant for development. This package includes the deliverable artifacts of the nanoFramework.System.Threading assembly for nanoFramework. These are for testing purposes and for updating the native code base of the library.</description>
+    <summary>nanoFramework.System.Threading.DELIVERABLES is not meant for development.</summary>
+    <tags>
+    </tags>
+    <dependencies>
+      <dependency id="nanoFramework.CoreLibrary" version="1.9.1-preview.6" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="nanoFramework.System.Threading\bin\Release\Stubs\*.*" target="content\Stubs\" />
+    <file src="nanoFramework.System.Threading\obj\Release\*.txt" target="content\txt\" />
+    <file src="nanoFramework.System.Threading\obj\Release\*.dump" target="content\dump\" />
+    <file src="nanoFramework.System.Threading\obj\Release\*.strings" target="content\dump\" />
+    <file src="nanoFramework.System.Threading\obj\Release\*.resources" target="content\resources\" />
+    <file src="nanoFramework.System.Threading\obj\Release\*.il" target="content\disasm\" />
+  </files>
+</package>
