@@ -12,13 +12,115 @@ namespace System.Runtime.CompilerServices
     /// <summary>
     /// Represents a builder for asynchronous methods that return a task.
     /// </summary>
+    public struct AsyncTaskMethodBuilder
+    {
+        /// <summary>
+        /// Creates an instance of the <see cref="AsyncTaskMethodBuilder"/> class.
+        /// </summary>
+        /// <returns>A new instance of the builder.</returns>
+        public static AsyncTaskMethodBuilder Create()
+        {
+            Debug.WriteLine($"AsyncTaskMethodBuilder:Create");
+            return new AsyncTaskMethodBuilder();
+        }
+
+        Task task;
+        /// <summary>
+        /// Gets the task for this builder
+        /// </summary>
+        /// <value>
+        /// The task for this builder.
+        /// </value>
+        public Task Task => task;
+
+        /// <summary>
+        ///  Schedules the state machine to proceed to the next action when the specified awaiter completes.
+        /// </summary>
+        /// <typeparam name="TAwaiter"></typeparam>
+        /// <typeparam name="TStateMachine"></typeparam>
+        /// <param name="awaiter"></param>
+        /// <param name="stateMachine"></param>
+        public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)
+            where TAwaiter : INotifyCompletion
+            where TStateMachine : IAsyncStateMachine
+        {
+            Debug.WriteLine($"AsyncTaskMethodBuilder:AwaitOnCompleted");
+            var _stateMachine = stateMachine;
+            awaiter.OnCompleted(() =>
+            {
+                Debug.WriteLine($"AsyncTaskMethodBuilder:OnCompleted");
+                _stateMachine.MoveNext();
+            });
+        }
+
+        /// <summary>
+        /// Schedules the state machine to proceed to the next action when the specified awaiter completes. This method can be called from partially trusted code.
+        /// </summary>
+        /// <typeparam name="TAwaiter"></typeparam>
+        /// <typeparam name="TStateMachine"></typeparam>
+        /// <param name="awaiter"></param>
+        /// <param name="stateMachine"></param>
+        public void AwaitUnsafeOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)
+            where TAwaiter : ICriticalNotifyCompletion
+            where TStateMachine : IAsyncStateMachine
+        {
+            Debug.WriteLine($"AsyncTaskMethodBuilder:AwaitUnsafeOnCompleted");
+            var _stateMachine = stateMachine;
+            awaiter.OnCompleted(() =>
+            {
+                Debug.WriteLine($"AsyncTaskMethodBuilder:OnCompleted");
+                _stateMachine.MoveNext();
+            });
+        }
+
+        /// <summary>
+        ///  Marks the task as failed and binds the specified exception to the task.
+        /// </summary>
+        /// <param name="exception"></param>
+        public void SetException(Exception exception)
+        {
+            Debug.WriteLine($"AsyncTaskMethodBuilder:SetException");
+            task?.CompleteWithException(exception);
+        }
+        /// <summary>
+        /// Marks the task as successfully completed.
+        /// </summary>
+        public void SetResult()
+        {
+            Debug.WriteLine($"AsyncTaskMethodBuilder:SetResult");
+        }
+        /// <summary>
+        /// Associates the builder with the specified state machine.
+        /// </summary>
+        /// <param name="stateMachine"></param>
+        public void SetStateMachine(IAsyncStateMachine stateMachine)
+        {
+            Debug.WriteLine($"AsyncTaskMethodBuilder:SetStateMachine");
+        }
+
+        /// <summary>
+        /// Begins running the builder with the associated state machine.
+        /// </summary>
+        /// <typeparam name="TStateMachine"></typeparam>
+        /// <param name="stateMachine"></param>
+        public void Start<TStateMachine>(ref TStateMachine stateMachine) where TStateMachine : IAsyncStateMachine
+        {
+            Debug.WriteLine($"AsyncTaskMethodBuilder:Start");
+            task = new Task();
+            stateMachine.MoveNext();
+        }
+    }
+
+    /// <summary>
+    /// Represents a builder for asynchronous methods that return a task.
+    /// </summary>
     /// <typeparam name="TResult"></typeparam>
     public struct AsyncTaskMethodBuilder<TResult>
     {
         Task<TResult> task;
 
         /// <summary>
-        /// Gets the task for this bu
+        /// Gets the task for this builder
         /// </summary>
         /// <value>
         /// The task for this builder.

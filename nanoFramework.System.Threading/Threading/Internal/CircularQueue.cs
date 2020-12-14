@@ -22,11 +22,11 @@ namespace System.Threading.Internal
             put = 0;
             get = 0;
             this.depth = depth;
-            data = new T[(long)depth];
+            data = new T[depth];
             size = 0;
         }
 
-        public bool Get(ref T data)
+        public bool Dequeue(ref T data)
         {
             if (size == 0)
                 return false;
@@ -46,14 +46,11 @@ namespace System.Threading.Internal
             return true;
         }
 
-        public bool Put(T data)
+        public bool Enqueue(T data)
         {
-            Debug.WriteLine("Put");
             if (size >= depth)
                 return false;
-            Debug.WriteLine("Putt");
             this.data[put] = data;
-            Debug.WriteLine("Puttt");
             put++;
             size++;
             if (put >= depth)

@@ -17,7 +17,8 @@ namespace System.Threading.Internal
         internal bool IsFree => thread == null || callback == null || thread.ThreadState == ThreadState.Suspended;
         internal int Id => thread != null ? thread.ManagedThreadId : -1;
         internal SynchronizationContext SynchronizationContext { get; private set; }
-        static bool cantSuspend = true;//false;
+        //static bool cantSuspend = false;
+        AutoResetEvent run = new AutoResetEvent(false);
 
         void Start()
         {
@@ -38,28 +39,29 @@ namespace System.Threading.Internal
                     if (callback != null)
                         continue;
                     Debug.WriteLine($"Thread {Id} exited");
-                    if (cantSuspend)//if platform doesnt support suspend, use polling
-                    {
-                        while (callback == null)
-                        {
-                            Thread.Sleep(100);
-                        }
-                    }
-                    else
-                    {
-                        try
-                        {
-                            Thread.CurrentThread.Suspend(); //if platform doesnt support suspend, use polling
-                        }
-                        catch
-                        {
-                            cantSuspend = true;
-                            while (callback == null)
-                            {
-                                Thread.Sleep(100);
-                            }
-                        }
-                    }
+                    run.WaitOne();
+                    //if (cantSuspend)//if platform doesnt support suspend, use polling
+                    //{
+                    //    while (callback == null)
+                    //    {
+                    //        Thread.Sleep(100);
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    try
+                    //    {
+                    //        Thread.CurrentThread.Suspend(); //if platform doesnt support suspend, use polling
+                    //    }
+                    //    catch
+                    //    {
+                    //        cantSuspend = true;
+                    //        while (callback == null)
+                    //        {
+                    //            Thread.Sleep(100);
+                    //        }
+                    //    }
+                    //}
                 }
             });
             SynchronizationContext = new NanoFrameworkSynchronizationContext(thread.ManagedThreadId);
@@ -76,8 +78,9 @@ namespace System.Threading.Internal
             }
             else
             {
-                if (!cantSuspend)
-                    thread.Resume();
+                run.Set();
+                //if (!cantSuspend)
+                //    thread.Resume();
             }
         }
 

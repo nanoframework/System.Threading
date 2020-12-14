@@ -59,6 +59,9 @@
     <Compile Include="System\Runtime\CompilerServices\IAsyncStateMachine.cs" />
     <Compile Include="System\Runtime\CompilerServices\ICriticalNotifyCompletion.cs" />
     <Compile Include="System\Runtime\CompilerServices\INotifyCompletion.cs" />
+    <Compile Include="Threading\CancellationToken.cs" />
+    <Compile Include="Threading\CancellationTokenRegistration.cs" />
+    <Compile Include="Threading\CancellationTokenSource.cs" />
     <Compile Include="Threading\Internal\CircularQueue.cs" />
     <Compile Include="Threading\Internal\NanoFrameworkSynchronizationContext.cs" />
     <Compile Include="Threading\Internal\ThreadWorker.cs" />
@@ -79,6 +82,11 @@
   <ItemGroup>
     <Reference Include="mscorlib, Version=1.10.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\packages\nanoFramework.CoreLibrary.1.10.0-preview.4\lib\mscorlib.dll</HintPath>
+      <Private>True</Private>
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="nanoFramework.System.Collections, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>C:\Users\ojesc\Desktop\NanoTest\NanoTest\packages\nanoFramework.System.Collections.1.2.0-preview.17\lib\nanoFramework.System.Collections.dll</HintPath>
       <Private>True</Private>
       <SpecificVersion>True</SpecificVersion>
     </Reference>
