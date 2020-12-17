@@ -80,13 +80,14 @@ namespace System.Runtime.CompilerServices
         public void SetException(Exception exception)
         {
             Debug.WriteLine($"AsyncTaskMethodBuilder:SetException");
-            task?.CompleteWithException(exception);
+            task.CompleteWithException(exception);
         }
         /// <summary>
         /// Marks the task as successfully completed.
         /// </summary>
         public void SetResult()
         {
+            task.Complete();
             Debug.WriteLine($"AsyncTaskMethodBuilder:SetResult");
         }
         /// <summary>

@@ -31,8 +31,10 @@ namespace System.Threading
                 //first find the first workitem that was requested to be run on this calling worker and start it
                 for (int i = 0; i < pendingWorks.Count; i++)
                 {
-                    WorkItem work = pendingWorks[i]; //TODO: remove this workitem from queue, figured it will be removed below
-                    if (work.workerId == callingWorker.Id) //if the work must be run on this thread
+                    //TODO: remove this workitem from queue, figured it will be removed below
+                    WorkItem work = pendingWorks[i];
+                    //if the work must be run on this thread
+                    if (work.workerId == callingWorker.Id) 
                     {
                         //post the job back to the callingWorker
                         callingWorker.Post(work.callBack, work.state);
@@ -50,7 +52,8 @@ namespace System.Threading
                             WorkItem work = default;
                             if (pendingWorks.Dequeue(ref work))
                             {
-                                if (work.workerId < 0) //if the work can be run on any thread
+                                //if the work can be run on any thread
+                                if (work.workerId < 0)
                                 {
                                     pool.Post(work.callBack, work.state);
                                 }
@@ -72,7 +75,9 @@ namespace System.Threading
             {
                 pool = workers[i];
                 if (pool.Id == id)
+                {
                     return pool;
+                }
             }
             return null;
         }
@@ -84,7 +89,9 @@ namespace System.Threading
             {
                 worker = workers[i];
                 if (worker.IsFree)
+                {
                     return worker;
+                }
             }
             return null;
         }
@@ -175,12 +182,13 @@ namespace System.Threading
         /// <returns>true if the method is successfully queued; System.NotSupportedException is thrown if the work item could not be queued.</returns>
         public static bool QueueUserWorkItem(WaitCallback callBack)
         {
-            ThreadWorker pool = GetOrCreateFreeWorker();
-            if (pool != null)
+            ThreadWorker worker = GetOrCreateFreeWorker();
+            if (worker != null)
             {
-                pool.Post(callBack, null);
+                worker.Post(callBack, null);
                 return true;
             }
+            //queue a work item that is not bound to a specific thread context
             return pendingWorks.Enqueue(new WorkItem(callBack, null));
         }
 
@@ -192,13 +200,14 @@ namespace System.Threading
         /// <returns><see langword="true"/> if the method is successfully queued; <see cref="NotSupportedException"/> is thrown if the work item could not be queued.</returns>
         public static bool QueueUserWorkItem(WaitCallback callBack, object state)
         {
-            ThreadWorker pool = GetOrCreateFreeWorker();
-            if (pool != null)
+            ThreadWorker worker = GetOrCreateFreeWorker();
+            if (worker != null)
             {
-                pool.Post(callBack, state);
+                worker.Post(callBack, state);
                 return true;
             }
-            return pendingWorks.Enqueue(new WorkItem(callBack, state));//queue a work item that is not bound to a specific thread context
+            //queue a work item that is not bound to a specific thread context
+            return pendingWorks.Enqueue(new WorkItem(callBack, state));
         }
 
         /// <summary>
@@ -216,11 +225,11 @@ namespace System.Threading
                 throw new Exception("PreferLocal:true not supported");
             }
 
-            ThreadWorker pool = GetOrCreateFreeWorker();
+            ThreadWorker worker = GetOrCreateFreeWorker();
             
-            if (pool != null)
+            if (worker != null)
             {
-                pool.Post((_) => callBack(state), null);
+                worker.Post((_) => callBack(state), null);
                
                 return true;
             }
@@ -230,16 +239,16 @@ namespace System.Threading
 
         internal static bool QueueUserWorkItemOnSpecificWorker(int threadId, WaitCallback callBack, object state)
         {
-            ThreadWorker pool = GetWorkerById(threadId);
+            ThreadWorker worker = GetWorkerById(threadId);
           
-            if (pool == null)
+            if (worker == null)
             {
                 throw new Exception($"No such worker with id {threadId}");
             }
 
-            if (pool.IsFree)
+            if (worker.IsFree)
             {
-                pool.Post(callBack, state);
+                worker.Post(callBack, state);
                 return true;
             }
             else

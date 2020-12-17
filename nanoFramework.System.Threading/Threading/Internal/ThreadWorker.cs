@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace System.Threading.Internal
 {
-    internal class ThreadWorker// : IDisposable
+    internal class ThreadWorker
     {
         Thread thread;
         WaitCallback callback;
@@ -17,7 +17,6 @@ namespace System.Threading.Internal
         internal bool IsFree => thread == null || callback == null || thread.ThreadState == ThreadState.Suspended;
         internal int Id => thread != null ? thread.ManagedThreadId : -1;
         internal SynchronizationContext SynchronizationContext { get; private set; }
-        //static bool cantSuspend = false;
         AutoResetEvent run = new AutoResetEvent(false);
 
         void Start()
@@ -40,28 +39,6 @@ namespace System.Threading.Internal
                         continue;
                     Debug.WriteLine($"Thread {Id} exited");
                     run.WaitOne();
-                    //if (cantSuspend)//if platform doesnt support suspend, use polling
-                    //{
-                    //    while (callback == null)
-                    //    {
-                    //        Thread.Sleep(100);
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    try
-                    //    {
-                    //        Thread.CurrentThread.Suspend(); //if platform doesnt support suspend, use polling
-                    //    }
-                    //    catch
-                    //    {
-                    //        cantSuspend = true;
-                    //        while (callback == null)
-                    //        {
-                    //            Thread.Sleep(100);
-                    //        }
-                    //    }
-                    //}
                 }
             });
             SynchronizationContext = new NanoFrameworkSynchronizationContext(thread.ManagedThreadId);
@@ -79,15 +56,8 @@ namespace System.Threading.Internal
             else
             {
                 run.Set();
-                //if (!cantSuspend)
-                //    thread.Resume();
             }
         }
-
-        //public void Dispose()
-        //{
-        //    thread?.Abort();
-        //}
     }
 
 }

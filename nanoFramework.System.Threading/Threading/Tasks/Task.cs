@@ -285,12 +285,6 @@ namespace System.Threading.Tasks
                 _continuations.Add(continuation);
         }
 
-        //public Task ContinueWith(Action continuation)
-        //{
-        //    var task = new Task(continuation);
-        //    return task;
-        //}
-
         internal void Complete()
         {
             Debug.WriteLine("Completing");
@@ -311,11 +305,13 @@ namespace System.Threading.Tasks
         /// </summary>
         public void GetResult()
         {
-            //while (!IsCompleted) ;
             resultWaitHandle.WaitOne();
-            resultWaitHandle.Set(); //use it as one shot
+            //use it as one shot
+            resultWaitHandle.Set(); 
             if (Exception != null)
+            {
                 throw Exception;
+            }
         }
     }
 
@@ -445,7 +441,7 @@ namespace System.Threading.Tasks
         {
             Result = result;
             RunContinuations();
-            Debug.WriteLine("Complete Dome");
+            Debug.WriteLine("Complete Done");
         }
 
         /// <summary>
