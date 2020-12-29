@@ -1,5 +1,25 @@
 # Changelog
 
+## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-nanoFramework.System.Threading/tree/HEAD)
+
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.System.Threading/compare/v1.0.1-preview.4...HEAD)
+
+**Implemented enhancements:**
+
+- Supports Task Cancellations [\#1](https://github.com/nanoframework/lib-nanoFramework.System.Threading/pull/1)
+
+## [v1.0.1-preview.4](https://github.com/nanoframework/lib-nanoFramework.System.Threading/tree/v1.0.1-preview.4) (2020-12-29)
+
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.System.Threading/compare/v1.0.1-preview.1...v1.0.1-preview.4)
+
+**Documentation and other chores:**
+
+- Update 4 NuGet dependencies [\#2](https://github.com/nanoframework/lib-nanoFramework.System.Threading/pull/2)
+
+## [v1.0.1-preview.1](https://github.com/nanoframework/lib-nanoFramework.System.Threading/tree/v1.0.1-preview.1) (2020-12-09)
+
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.System.Threading/compare/v1.0.0-preview.3...v1.0.1-preview.1)
+
 ## [v1.0.0-preview.3](https://github.com/nanoframework/lib-nanoFramework.System.Threading/tree/v1.0.0-preview.3) (2020-12-07)
 
 [Full Changelog](https://github.com/nanoframework/lib-nanoFramework.System.Threading/compare/2834824d154d373c86b9b26d130a3da827afb6c8...v1.0.0-preview.3)
