@@ -18,14 +18,24 @@ namespace System.Threading.Tasks
         TaskAwaiter awaiter;
 
         ArrayList _continuations = new ArrayList();
+        protected AutoResetEvent resultWaitHandle = new AutoResetEvent(false);
 
+        bool isCompleted;
         /// <summary>
         /// Gets a value that indicates whether the task has completed.
         /// </summary>
         /// <value>
         /// <see langword="true"/> if the task has completed (that is, the task is in one of the three final states: RanToCompletion, Faulted, or Canceled); otherwise, <see langword="false"/>.
         /// </value>
-        public bool IsCompleted { get; protected set; }
+        public bool IsCompleted
+        {
+            get => isCompleted;
+            set
+            {
+                isCompleted = true;
+                resultWaitHandle.Set();
+            }
+        }
 
         /// <summary>
         /// Gets the AggregateException that caused the <see cref="Task"/> to end prematurely. If the <see cref="Task"/> completed successfully or has not yet thrown any exceptions, this will return <see langword="null"/>.
@@ -43,7 +53,22 @@ namespace System.Threading.Tasks
         /// </value>
         public bool IsCompletedSuccessfully => IsCompleted && Exception == null;
 
-// TODO this is not in the .NET API
+        /// <summary>
+        /// Control flags for a task
+        /// </summary>
+        protected enum Flags
+        {
+            /// <summary>
+            /// Run the task continuations on the same thread that start the task
+            /// </summary>
+            ContinueOnSameContext = 1
+        }
+        /// <summary>
+        /// Internal control paramters for this task
+        /// </summary>
+        protected Flags flags = Flags.ContinueOnSameContext;
+
+        // TODO this is not in the .NET API
         public static Task<TResult> FromEvent<TResult>(EventHandler<TResult> callback)
         {
             var tcs = new TaskCompletionSource<TResult>();
@@ -179,7 +204,14 @@ namespace System.Threading.Tasks
                 {
                     action();
                     Debug.WriteLine("Calling Complete");
-                    syncContext.Post((__) => Complete(), null);
+                    if (flags.HasFlag(Flags.ContinueOnSameContext))
+                    {
+                        syncContext.Post((__) => Complete(), null);
+                    }
+                    else
+                    {
+                        Complete();
+                    }
                     Debug.WriteLine("Called Complete");
                 }
                 catch (Exception e)
@@ -231,6 +263,20 @@ namespace System.Threading.Tasks
             return task;
         }
 
+        /// <summary>
+        /// Make task continuation not neccessarily run on the same context where it is started. Gives better performance
+        /// </summary>
+        /// <param name="continueOnSameContext"></param>
+        /// <returns>Same instance of task</returns>
+        public Task ConfigureAwait(bool continueOnSameContext = true)
+        {
+            if (continueOnSameContext == false)
+            {
+                flags &= ~Flags.ContinueOnSameContext;
+            }
+            return this;
+        }
+
         internal void OnCompleted(Action continuation)
         {
             if (IsCompleted)
@@ -238,12 +284,6 @@ namespace System.Threading.Tasks
             else
                 _continuations.Add(continuation);
         }
-
-        //public Task ContinueWith(Action continuation)
-        //{
-        //    var task = new Task(continuation);
-        //    return task;
-        //}
 
         internal void Complete()
         {
@@ -260,11 +300,18 @@ namespace System.Threading.Tasks
         }
 
         // TODO check .NET
+        /// <summary>
+        /// Get the result of the async operation. Block the calling thread until task completes
+        /// </summary>
         public void GetResult()
         {
-            while (!IsCompleted) ;
+            resultWaitHandle.WaitOne();
+            //use it as one shot
+            resultWaitHandle.Set(); 
             if (Exception != null)
+            {
                 throw Exception;
+            }
         }
     }
 
@@ -287,8 +334,10 @@ namespace System.Threading.Tasks
         {
             get
             {
-                // TODO check loop
-                while (!IsCompleted);
+                resultWaitHandle.WaitOne();
+                resultWaitHandle.Set(); //use it as one shot
+                //// TODO check loop
+                //while (!IsCompleted);
 
                 if (Exception != null)
                 {
@@ -326,7 +375,14 @@ namespace System.Threading.Tasks
                 try
                 {
                     var result = function();
-                    syncContext.Post((r) => Complete((TResult)r), result);
+                    if (flags.HasFlag(Flags.ContinueOnSameContext))
+                    {
+                        syncContext.Post((r) => Complete((TResult)r), result);
+                    }
+                    else
+                    {
+                        Complete(result);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -353,12 +409,29 @@ namespace System.Threading.Tasks
             return task;
         }
 
+        /// <summary>
+        /// Make task continuation not neccessarily run on the same context where it is started. Gives better performance
+        /// </summary>
+        /// <param name="continueOnSameContext"></param>
+        /// <returns>same instance of task</returns>
+        public new Task<TResult> ConfigureAwait(bool continueOnSameContext = true)
+        {
+            if (continueOnSameContext == false)
+            {
+                flags &= ~Flags.ContinueOnSameContext;
+            }
+            return this;
+        }
+
         internal void OnCompleted(Action<TResult> continuation)
         {
             OnCompleted(() => continuation(GetResult()));
         }
 
         // TODO check .NET
+        /// <summary>
+        /// Get the result of the async operation. Block the calling thread until task completes
+        /// </summary>
         public new TResult GetResult()
         {
             return Result;
@@ -366,10 +439,9 @@ namespace System.Threading.Tasks
 
         internal void Complete(TResult result)
         {
-            IsCompleted = true;
             Result = result;
             RunContinuations();
-            Debug.WriteLine("Complete Dome");
+            Debug.WriteLine("Complete Done");
         }
 
         /// <summary>
