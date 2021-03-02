@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-nanoFramework.System.Threading/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.System.Threading/compare/v1.0.1-preview.9...HEAD)
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.System.Threading/compare/v1.0.1-preview.12...HEAD)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.10.1-preview.9 to 1.10.1-preview.11 [\#5](https://github.com/nanoframework/lib-nanoFramework.System.Threading/pull/5)
+
+## [v1.0.1-preview.12](https://github.com/nanoframework/lib-nanoFramework.System.Threading/tree/v1.0.1-preview.12) (2021-02-12)
+
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.System.Threading/compare/v1.0.1-preview.9...v1.0.1-preview.12)
 
 **Documentation and other chores:**
 
