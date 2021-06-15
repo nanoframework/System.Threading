@@ -57,26 +57,10 @@
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="System\Runtime\CompilerServices\AsyncTaskMethodBuilder.cs" />
-    <Compile Include="System\Runtime\CompilerServices\AsyncVoidMethodBuilder.cs" />
-    <Compile Include="System\Runtime\CompilerServices\IAsyncStateMachine.cs" />
-    <Compile Include="System\Runtime\CompilerServices\ICriticalNotifyCompletion.cs" />
-    <Compile Include="System\Runtime\CompilerServices\INotifyCompletion.cs" />
     <Compile Include="Threading\CancellationToken.cs" />
     <Compile Include="Threading\CancellationTokenRegistration.cs" />
     <Compile Include="Threading\CancellationTokenSource.cs" />
-    <Compile Include="Threading\Internal\CircularQueue.cs" />
-    <Compile Include="Threading\Internal\NanoFrameworkSynchronizationContext.cs" />
-    <Compile Include="Threading\Internal\ThreadWorker.cs" />
-    <Compile Include="Threading\Internal\WorkItem.cs" />
-    <Compile Include="Threading\SendOrPostCallback.cs" />
-    <Compile Include="Threading\SynchronizationContext.cs" />
-    <Compile Include="Threading\Tasks\Task.cs" />
-    <Compile Include="Threading\Tasks\TaskAwaiter.cs" />
-    <Compile Include="Threading\Tasks\TaskCanceledException.cs" />
-    <Compile Include="Threading\Tasks\TaskCompletionSource.cs" />
-    <Compile Include="Threading\ThreadPool.cs" />
-    <Compile Include="Threading\WaitCallback.cs" />
+    <Compile Include="Threading\OperationCanceledException.cs" />
     <None Include="key.snk" />
   </ItemGroup>
   <ItemGroup>
