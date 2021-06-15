@@ -25,7 +25,7 @@ namespace System.Threading
     /// </remarks>
     public struct CancellationToken
     {
-        // The backing TokenSource.  
+        // The backing TokenSource.
         // if null, it implicitly represents the same thing as new CancellationToken(false).
         // When required, it will be instantiated to reflect this.
         private CancellationTokenSource _source;
