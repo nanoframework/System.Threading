@@ -6,7 +6,7 @@
                                                                                
 ===================================================================================
 
-API docs: https://docs.nanoframework.net/api/nanoFramework.System.Threading.html
+API docs: https://docs.nanoframework.net/api/System.Threading
 
 Browse our samples repository: https://github.com/nanoframework/samples
 
