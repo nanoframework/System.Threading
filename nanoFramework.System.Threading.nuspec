@@ -19,7 +19,7 @@
     <description>This package includes the nanoFramework.System.Threading assembly for .NET nanoFramework C# projects.</description>
     <tags>nanoFramework C# csharp netmf netnf nanoFramework.System.Threading sntp</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.12.0-preview.5" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.12.0-preview.9" />
     </dependencies>
   </metadata>
   <files>
