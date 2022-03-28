@@ -1,8 +1,8 @@
 # Changelog
 
-## [v1.0.3](https://github.com/nanoframework/System.Threading/tree/v1.0.3) (2021-12-03)
+## [v1.0.4-preview.26](https://github.com/nanoframework/System.Threading/tree/v1.0.4-preview.26) (2022-03-28)
 
-[Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.0.4-preview.23...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.0.4-preview.23...v1.0.4-preview.26)
 
 **Documentation and other chores:**
 
