@@ -11,7 +11,6 @@
 | Component | Build Status | NuGet Package |
 |:-|---|---|
 | nanoFramework.System.Threading | [![Build Status](https://dev.azure.com/nanoframework/System.Threading/_apis/build/status/System.Threading?repoName=nanoframework%2FSystem.Threading&branchName=main)](https://dev.azure.com/nanoframework/System.Threading/_build/latest?definitionId=66&repoName=nanoframework%2FSystem.Threading&branchName=main) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.System.Threading.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.System.Threading/) |
-| nanoFramework.System.Threading (preview) | [![Build Status](https://dev.azure.com/nanoframework/System.Threading/_apis/build/status/System.Threading?repoName=nanoframework%2FSystem.Threading&branchName=develop)](https://dev.azure.com/nanoframework/System.Threading/_build/latest?definitionId=66&repoName=nanoframework%2FSystem.Threading&branchName=develop) | [![NuGet](https://img.shields.io/nuget/vpre/nanoFramework.System.Threading.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.System.Threading/) |
 
 ## Feedback and documentation
 
