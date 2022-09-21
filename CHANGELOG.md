@@ -1,5 +1,29 @@
 # Changelog
 
+## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Threading/tree/HEAD)
+
+[Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.0.4...HEAD)
+
+**Documentation and other chores:**
+
+- Update 1 NuGet dependencies [\#77](https://github.com/nanoframework/System.Threading/pull/77)
+- Update 1 NuGet dependencies [\#76](https://github.com/nanoframework/System.Threading/pull/76)
+- Update 1 NuGet dependencies [\#75](https://github.com/nanoframework/System.Threading/pull/75)
+- Update 1 NuGet dependencies [\#74](https://github.com/nanoframework/System.Threading/pull/74)
+- Update 1 NuGet dependencies [\#73](https://github.com/nanoframework/System.Threading/pull/73)
+- Update 1 NuGet dependencies [\#72](https://github.com/nanoframework/System.Threading/pull/72)
+- Update 1 NuGet dependencies [\#71](https://github.com/nanoframework/System.Threading/pull/71)
+- Update 1 NuGet dependencies [\#70](https://github.com/nanoframework/System.Threading/pull/70)
+- Update 1 NuGet dependencies [\#69](https://github.com/nanoframework/System.Threading/pull/69)
+
+## [v1.0.4](https://github.com/nanoframework/System.Threading/tree/v1.0.4) (2022-03-28)
+
+[Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.0.4-preview.26...v1.0.4)
+
+**Documentation and other chores:**
+
+- release-v1.0.4 [\#67](https://github.com/nanoframework/System.Threading/pull/67)
+
 ## [v1.0.4-preview.26](https://github.com/nanoframework/System.Threading/tree/v1.0.4-preview.26) (2022-03-28)
 
 [Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.0.4-preview.23...v1.0.4-preview.26)
@@ -80,6 +104,10 @@
 
 [Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.0.3-preview.13...v1.0.3)
 
+**Documentation and other chores:**
+
+- release-v1.0.3 [\#52](https://github.com/nanoframework/System.Threading/pull/52)
+
 ## [v1.0.3-preview.13](https://github.com/nanoframework/System.Threading/tree/v1.0.3-preview.13) (2021-12-02)
 
 [Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.0.3-preview.9...v1.0.3-preview.13)
@@ -100,11 +128,15 @@
 - Update 1 nuget dependencies [\#47](https://github.com/nanoframework/System.Threading/pull/47)
 - Update 1 nuget dependencies [\#45](https://github.com/nanoframework/System.Threading/pull/45)
 - Update 1 nuget dependencies [\#43](https://github.com/nanoframework/System.Threading/pull/43)
-- Update 1 nuget dependencies [\#41](https://github.com/nanoframework/System.Threading/pull/41)
 
 ## [v1.0.2](https://github.com/nanoframework/System.Threading/tree/v1.0.2) (2021-07-15)
 
 [Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.0.1-preview.47...v1.0.2)
+
+**Documentation and other chores:**
+
+- release-v1.0.2 [\#42](https://github.com/nanoframework/System.Threading/pull/42)
+- Update 1 nuget dependencies [\#41](https://github.com/nanoframework/System.Threading/pull/41)
 
 ## [v1.0.1-preview.47](https://github.com/nanoframework/System.Threading/tree/v1.0.1-preview.47) (2021-07-14)
 
