@@ -2,7 +2,22 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Threading/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.0.4...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.1.8...HEAD)
+
+**Documentation and other chores:**
+
+- Update 2 NuGet dependencies [\#88](https://github.com/nanoframework/System.Threading/pull/88)
+- Update 1 NuGet dependencies [\#85](https://github.com/nanoframework/System.Threading/pull/85)
+- Update 1 NuGet dependencies [\#84](https://github.com/nanoframework/System.Threading/pull/84)
+- Update 1 NuGet dependencies [\#83](https://github.com/nanoframework/System.Threading/pull/83)
+- Update 1 NuGet dependencies [\#82](https://github.com/nanoframework/System.Threading/pull/82)
+- Update 1 NuGet dependencies [\#81](https://github.com/nanoframework/System.Threading/pull/81)
+- Update 1 NuGet dependencies [\#80](https://github.com/nanoframework/System.Threading/pull/80)
+- Update 1 NuGet dependencies [\#79](https://github.com/nanoframework/System.Threading/pull/79)
+
+## [v1.1.8](https://github.com/nanoframework/System.Threading/tree/v1.1.8) (2022-09-21)
+
+[Full Changelog](https://github.com/nanoframework/System.Threading/compare/v1.0.4...v1.1.8)
 
 **Documentation and other chores:**
 
