@@ -2,9 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using nanoFramework.TestFramework;
-using System;
-using System.Diagnostics;
-using System.Threading;
 
 namespace System.Threading
 {
@@ -28,7 +25,7 @@ namespace System.Threading
             }).Start();
             TestCancealltionToken(token);
             // Assert
-            Assert.True(isCancelledFunction);
+            Assert.IsTrue(isCancelledFunction);
         }
 
         private void TestCancealltionToken(CancellationToken csToken)
@@ -69,7 +66,7 @@ namespace System.Threading
             // Assert
             // Clean in case
             toCancelThread?.Abort();
-            Assert.True(isCancelledFunction);
+            Assert.IsTrue(isCancelledFunction);
 
         }
 
@@ -83,7 +80,7 @@ namespace System.Threading
             CancellationTokenRegistration ctr = token.Register(ActionToNotify);
             // Act
             cs.Cancel();
-            Assert.True(isCancelledAction);
+            Assert.IsTrue(isCancelledAction);
         }
 
 
@@ -110,7 +107,7 @@ namespace System.Threading
             // Clean in case
             toCancelThread?.Abort();
 
-            Assert.True(isCancelledFunction);
+            Assert.IsTrue(isCancelledFunction);
         }
 
         [TestMethod]
@@ -118,9 +115,9 @@ namespace System.Threading
         {
             CancellationTokenSource cs = new(200);
             CancellationToken token = cs.Token;
-            Assert.False(token.IsCancellationRequested);
+            Assert.IsFalse(token.IsCancellationRequested);
             Thread.Sleep(210);
-            Assert.True(token.IsCancellationRequested);
+            Assert.IsTrue(token.IsCancellationRequested);
         }
 
         [TestMethod]
@@ -128,9 +125,9 @@ namespace System.Threading
         {
             CancellationTokenSource cs = new();
             cs.CancelAfter(200);
-            Assert.False(cs.IsCancellationRequested);
+            Assert.IsFalse(cs.IsCancellationRequested);
             Thread.Sleep(210);
-            Assert.True(cs.IsCancellationRequested);
+            Assert.IsTrue(cs.IsCancellationRequested);
         }
     }
 }

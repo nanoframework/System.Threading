@@ -6,9 +6,10 @@ Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "nanoFramework.System.Thread
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9AB89B3C-AA80-4A76-A3C3-A84DCD0323FA}"
 	ProjectSection(SolutionItems) = preProject
-		nanoFramework.System.Threading.DELIVERABLES.nuspec = nanoFramework.System.Threading.DELIVERABLES.nuspec
+		.runsettings = .runsettings
 		nanoFramework.System.Threading.nuspec = nanoFramework.System.Threading.nuspec
 		NuGet.Config = NuGet.Config
+		README.md = README.md
 		version.json = version.json
 	EndProjectSection
 EndProject

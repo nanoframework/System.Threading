@@ -53,6 +53,7 @@ steps:
   parameters:
     sonarCloudProject: 'nanoframework_lib-nanoframework.System.Threading'
     runUnitTests: true
+    usePreviewBuild: true
 
 # step from template @ nf-tools repo
 # report error
