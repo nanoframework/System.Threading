@@ -10,7 +10,7 @@ on:
   # At 01:20 UTC every Wed,Fri.
   - cron:  '20 01 * * Wed,Fri'
   repository_dispatch:
-    types: update-dependencies
+    types: update-dependencies-develop
 
 jobs:
   update-dependencies:
